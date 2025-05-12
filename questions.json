@@ -1,0 +1,12 @@
+[
+  {
+    "question": "Which organelle is known as the powerhouse of the cell?",
+    "options": ["Nucleus", "Mitochondria", "Golgi Apparatus", "Endoplasmic Reticulum"],
+    "correctIndex": 1
+  },
+  {
+    "question": "What is the value of Avogadro’s number?",
+    "options": ["6.022×10²³", "3.14", "9.8 m/s²", "1.6×10⁻¹⁹ C"],
+    "correctIndex": 0
+  }
+]

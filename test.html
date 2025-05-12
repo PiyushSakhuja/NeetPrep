@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEET Quest</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Simple popup animation */
+    @keyframes popupFade {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .popup-animate {
+      animation: popupFade 0.6s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-black text-white font-sans overflow-x-hidden">
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between px-10 py-6">
+    <div class="text-xl font-bold tracking-wider hover:scale-105 transition-transform duration-300">NEET<span class="text-blue-500">Quest</span></div>
+    <ul class="flex gap-8 text-sm uppercase tracking-wide">
+      <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">About</a></li>
+      <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">Stages</a></li>
+      <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">Leaderboard</a></li>
+      <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">News</a></li>
+    </ul>
+    <a href="login.html" id= "button" class="border px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition duration-300">Login</a>
+
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative h-screen flex items-center justify-start px-12 bg-gradient-to-r from-black to-gray-900 overflow-hidden">
+    <div class="z-10 max-w-2xl animate-fade-in">
+      <h1 class="text-5xl font-light leading-tight mb-4 transition-all duration-500 hover:tracking-wider">
+        Prepare for NEET with a <br />
+        <span class="font-bold text-blue-500">Gamified System</span>
+      </h1>
+      <p class="text-gray-300 mb-6 transition-opacity duration-500 hover:opacity-80">Track your progress, earn badges, and become a NEET master!</p>
+      <a href="login.html" class="text-blue-500 border-b border-blue-500 hover:text-white transition-colors duration-300">Start Your Quest</a>
+    </div>
+    <div class="absolute inset-0 bg-[url('/your-character.png')] bg-no-repeat bg-right opacity-20"></div>
+  </section>
+
+  <!-- Services -->
+  <section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 px-10 py-12 bg-black">
+    <!-- Repeatable Card -->
+    <div class="p-4 border border-gray-800 hover:bg-gray-900 transition duration-300 hover:scale-105">
+      <h2 class="text-sm text-gray-400">01</h2>
+      <h3 class="text-lg font-semibold mt-2">Concept Quests</h3>
+      <p class="text-xs text-gray-500 mt-1">Master topics via small mission-like quizzes.</p>
+    </div>
+    <div class="p-4 border border-gray-800 hover:bg-gray-900 transition duration-300 hover:scale-105">
+      <h2 class="text-sm text-gray-400">02</h2>
+      <h3 class="text-lg font-semibold mt-2">Chapter Challenges</h3>
+      <p class="text-xs text-gray-500 mt-1">Progress through subjects like a game.</p>
+    </div>
+    <div class="p-4 border border-gray-800 hover:bg-gray-900 transition duration-300 hover:scale-105">
+      <h2 class="text-sm text-gray-400">03</h2>
+      <h3 class="text-lg font-semibold mt-2">Mock Battles</h3>
+      <p class="text-xs text-gray-500 mt-1">Compete in full-length mock tests.</p>
+    </div>
+    <div class="p-4 border border-gray-800 hover:bg-gray-900 transition duration-300 hover:scale-105">
+      <h2 class="text-sm text-gray-400">04</h2>
+      <h3 class="text-lg font-semibold mt-2">Leaderboards</h3>
+      <p class="text-xs text-gray-500 mt-1">See how you rank among NEET warriors.</p>
+    </div>
+    <div class="p-4 border border-gray-800 hover:bg-gray-900 transition duration-300 hover:scale-105">
+      <h2 class="text-sm text-gray-400">05</h2>
+      <h3 class="text-lg font-semibold mt-2">Streak Rewards</h3>
+      <p class="text-xs text-gray-500 mt-1">Daily practice = XP boost & unlockables.</p>
+    </div>
+    <div class="p-4 border border-gray-800 hover:bg-gray-900 transition duration-300 hover:scale-105">
+      <h2 class="text-sm text-gray-400">06</h2>
+      <h3 class="text-lg font-semibold mt-2">AI Progress Coach</h3>
+      <p class="text-xs text-gray-500 mt-1">Get tips from an adaptive NEET AI mentor.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative bg-gray-900 py-12 px-10 text-sm text-gray-400">
+    <div class="text-center">&copy; 2025 NEETQuest. All rights reserved.</div>
+
+    <!-- Popup Animation Box -->
+    <div id="popupBox" class="absolute bottom-20 right-10 bg-blue-500 text-white p-4 rounded-lg shadow-lg opacity-0 pointer-events-none popup-animate">
+      🎉 Tip: Complete 7 days in a row to unlock "Streak Master" badge!
+    </div>
+  </footer>
+
+  <script>
+    // Optional: show popup after 2 seconds
+    setTimeout(() => {
+      const popup = document.getElementById('popupBox');
+      popup.classList.remove('opacity-0', 'pointer-events-none');
+    }, 2000);
+  </script>
+</body>
+</html>

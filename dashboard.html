@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEET Prep Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: #181818;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar h2 {
+      color: #00d4ff;
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #ccc;
+      padding: 12px 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background: #2979ff;
+      color: white;
+    }
+
+    .main {
+      flex: 1;
+      padding: 30px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 26px;
+    }
+
+    .motivation {
+      margin: 10px 0 30px;
+      color: #00d4ff;
+      font-size: 16px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #00d4ff22;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .chart-container {
+      margin: 40px 0;
+      background: #1e1e1e;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 10px #00d4ff22;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 300px !important;
+    }
+
+    .timeline {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #00d4ff22;
+    }
+
+    .timeline h3 {
+      margin-bottom: 15px;
+    }
+
+    .timeline ul {
+      list-style: none;
+    }
+
+    .timeline ul li {
+      margin-bottom: 10px;
+      padding-left: 10px;
+      border-left: 3px solid #2979ff;
+    }
+
+    .timeline ul li span {
+      display: block;
+      font-size: 12px;
+      color: #888;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+      body {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>NEET Prep</h2>
+    <a href="#" class="active">Dashboard</a>
+    <a href="#">Start Quiz</a>
+    <a href="#">Progress</a>
+    <a href="#">Notes</a>
+    <a href="#">Leaderboard</a>
+    <a href="#">Settings</a>
+  </div>
+
+  <div class="main">
+    <div class="header">
+      <h1>Dashboard</h1>
+      <div>User: FutureDoctor123</div>
+    </div>
+    <div class="motivation">"Success doesn't come to you, you go to it."</div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Total Quizzes</h3>
+        <p>48</p>
+      </div>
+      <div class="card">
+        <h3>Correct Answers</h3>
+        <p>362</p>
+      </div>
+      <div class="card">
+        <h3>Wrong Answers</h3>
+        <p>98</p>
+      </div>
+      <div class="card">
+        <h3>Completion Rate</h3>
+        <p>78%</p>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <h3 style="margin-bottom: 10px;">Weekly Quiz Performance</h3>
+      <canvas id="quizChart"></canvas>
+    </div>
+
+    <div class="timeline">
+      <h3>Recent Activity</h3>
+      <ul>
+        <li>Completed Physics Quiz - Mechanics
+          <span>Today, 9:30 AM</span>
+        </li>
+        <li>Reviewed Notes on Cell Biology
+          <span>Yesterday, 4:45 PM</span>
+        </li>
+        <li>Completed Chemistry Quiz - Organic Compounds
+          <span>2 Days Ago</span>
+        </li>
+        <li>Watched Video - Human Physiology
+          <span>3 Days Ago</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('quizChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Correct Answers',
+          data: [18, 20, 17, 22, 25, 28, 30],
+          borderColor: '#00d4ff',
+          backgroundColor: 'rgba(0,212,255,0.2)',
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: { color: '#ccc' }
+          }
+        },
+        scales: {
+          x: { ticks: { color: '#ccc' }, grid: { color: '#333' }},
+          y: { ticks: { color: '#ccc' }, grid: { color: '#333' }}
+        }
+      }
+    });
+  </script>
+</body>
+</html>

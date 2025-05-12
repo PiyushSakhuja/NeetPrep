@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-r from-purple-600 to-indigo-700 min-h-screen flex items-center justify-center p-4">
+
+  <div class="glass max-w-2xl w-full p-6 text-white">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold">Question 1</h2>
+      <button class="text-sm text-gray-300 hover:text-white">Bookmark</button>
+    </div>
+
+    <p class="text-lg font-medium mb-6">How many meiotic divisions are required for the formation of 100 pollen grains?</p>
+
+    <div class="space-y-3">
+      <button class="w-full px-4 py-2 rounded-lg border border-red-400 bg-red-100 text-red-800">100 <span class="text-xs ml-2">First Attempt</span></button>
+      <button class="w-full px-4 py-2 rounded-lg border border-gray-400 bg-gray-200 text-gray-800">50</button>
+      <button class="w-full px-4 py-2 rounded-lg border border-green-400 bg-green-100 text-green-800">25 <span class="text-xs ml-2">Correct in 2nd Attempt</span></button>
+      <button class="w-full px-4 py-2 rounded-lg border border-gray-400 bg-gray-200 text-gray-800">26</button>
+    </div>
+
+    <div class="mt-6 p-4 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-20">
+      <h4 class="font-semibold text-white mb-2">Explanation:</h4>
+      <p class="text-sm text-gray-200">Each microspore mother cell or pollen mother cell (PMC) on reduction division (meiosis) gives rise to 4 pollen grains. Hence, to form 100 pollen grains, 25 meiotic divisions are required.</p>
+    </div>
+
+    <div class="mt-6 flex justify-between items-center text-sm text-gray-300">
+      <span>69% got it right • Easy question</span>
+      <span>-2.7 level impact</span>
+    </div>
+
+    <div class="mt-6 text-right">
+      <button class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg">Next Question →</button>
+    </div>
+  </div>
+
+</body>
+</html>
