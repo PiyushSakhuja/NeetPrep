@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Features - NEETQuest</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .glass-card {
+      background: rgba(17, 25, 40, 0.75);
+      backdrop-filter: blur(16px) saturate(180%);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.125);
+      transition: transform 0.3s ease;
+    }
+    .glass-card:hover {
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+<body class="bg-black text-white min-h-screen">
+  <nav class="bg-gray-900/80 backdrop-blur-md px-6 py-4 flex items-center justify-between sticky top-0 z-40">
+    <a href="../index.html" class="text-xl font-bold tracking-wider">
+      NEET<span class="text-blue-500">Quest</span>
+    </a>
+    <div class="flex items-center gap-6">
+      <a href="../index.html" class="hover:text-blue-500">Home</a>
+      <a href="stats.html" class="hover:text-blue-500">Stats</a>
+      <a href="learning-path.html" class="hover:text-blue-500">Learning Path</a>
+      <a href="about.html" class="hover:text-blue-500">About</a>
+      <div class="flex gap-4">
+        <a href="login.html" class="text-blue-500 hover:text-blue-400">Login</a>
+        <a href="signup.html" class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600">Sign Up</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-6 py-16">
+    <h1 class="text-4xl font-bold text-center mb-12">Our Features</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="glass-card p-8">
+        <div class="text-blue-500 text-4xl mb-6">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4">AI-Powered Learning</h3>
+        <p class="text-gray-300">Personalized study plans that adapt to your learning pace and style. Our AI algorithms analyze your performance to optimize your preparation.</p>
+      </div>
+
+      <div class="glass-card p-8">
+        <div class="text-blue-500 text-4xl mb-6">
+          <i class="fas fa-book-reader"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4">Comprehensive Content</h3>
+        <p class="text-gray-300">Access to detailed study materials, video lectures, and practice questions covering all NEET subjects and topics.</p>
+      </div>
+
+      <div class="glass-card p-8">
+        <div class="text-blue-500 text-4xl mb-6">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4">Performance Analytics</h3>
+        <p class="text-gray-300">Detailed insights into your progress with visual analytics and performance metrics to track your improvement.</p>
+      </div>
+
+      <div class="glass-card p-8">
+        <div class="text-blue-500 text-4xl mb-6">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4">Expert Support</h3>
+        <p class="text-gray-300">Get guidance from experienced NEET educators and join a community of dedicated learners.</p>
+      </div>
+
+      <div class="glass-card p-8">
+        <div class="text-blue-500 text-4xl mb-6">
+          <i class="fas fa-clock"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4">Time Management</h3>
+        <p class="text-gray-300">Tools and techniques to help you manage your study schedule effectively and stay on track.</p>
+      </div>
+
+      <div class="glass-card p-8">
+        <div class="text-blue-500 text-4xl mb-6">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4">Mobile Learning</h3>
+        <p class="text-gray-300">Study on the go with our mobile-responsive platform. Access your materials anytime, anywhere.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-900/80 backdrop-blur-md py-8">
+    <div class="container mx-auto px-6">
+      <div class="text-center text-gray-400">
+        <p>&copy; 2024 NEETQuest. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html> 

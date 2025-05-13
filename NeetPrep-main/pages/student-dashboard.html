@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEET Quest - Student Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-black text-white font-sans">
+  <!-- Sidebar -->
+  <div id="sidebar" class="fixed top-0 left-0 h-screen w-64 bg-gray-900 transform transition-transform duration-300 z-50">
+    <div class="p-6">
+      <div class="flex justify-between items-center mb-8">
+        <a href="../index.html" class="text-xl font-bold">NEET<span class="text-blue-500">Quest</span></a>
+        <button onclick="toggleSidebar()" class="text-gray-400 hover:text-white">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="space-y-4">
+        <a href="#" class="block py-2 px-4 rounded hover:bg-blue-500 transition-colors">
+          <i class="fas fa-home mr-2"></i> Overview
+        </a>
+        <a href="#study-materials" class="block py-2 px-4 rounded hover:bg-blue-500 transition-colors">
+          <i class="fas fa-book mr-2"></i> Study Materials
+        </a>
+        <a href="#tests" class="block py-2 px-4 rounded hover:bg-blue-500 transition-colors">
+          <i class="fas fa-file-alt mr-2"></i> Tests
+        </a>
+        <a href="#performance" class="block py-2 px-4 rounded hover:bg-blue-500 transition-colors">
+          <i class="fas fa-chart-line mr-2"></i> Performance
+        </a>
+        <a href="#schedule" class="block py-2 px-4 rounded hover:bg-blue-500 transition-colors">
+          <i class="fas fa-calendar mr-2"></i> Schedule
+        </a>
+        <a href="#settings" class="block py-2 px-4 rounded hover:bg-blue-500 transition-colors">
+          <i class="fas fa-cog mr-2"></i> Settings
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content" class="transition-margin duration-300">
+    <!-- Navigation -->
+    <nav class="bg-gray-900 px-6 py-4 flex items-center justify-between sticky top-0 z-40">
+      <div class="flex items-center gap-4">
+        <button onclick="toggleSidebar()" class="text-gray-400 hover:text-white">
+          <i class="fas fa-bars"></i>
+        </button>
+        <a href="../index.html" class="text-xl font-bold tracking-wider">
+          NEET<span class="text-blue-500">Quest</span>
+        </a>
+      </div>
+      <div class="flex items-center gap-6">
+        <!-- NEET Countdown Timer -->
+        <div class="bg-gray-800 px-4 py-2 rounded-lg">
+          <span class="text-sm text-gray-400">NEET 2024:</span>
+          <span id="neet-countdown" class="ml-2 font-mono"></span>
+        </div>
+        <!-- User Menu -->
+        <div class="relative">
+          <button id="userMenuBtn" class="flex items-center gap-2 text-gray-400 hover:text-white">
+            <img src="https://ui-avatars.com/api/?name=Student&background=3B82F6&color=fff" class="w-8 h-8 rounded-full">
+            <span>Student Name</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="userMenu" class="hidden absolute right-0 mt-2 w-48 bg-gray-900 rounded-lg shadow-lg py-2">
+            <a href="#profile" class="block px-4 py-2 hover:bg-gray-800">
+              <i class="fas fa-user mr-2"></i> Profile
+            </a>
+            <a href="#settings" class="block px-4 py-2 hover:bg-gray-800">
+              <i class="fas fa-cog mr-2"></i> Settings
+            </a>
+            <hr class="border-gray-800 my-2">
+            <button onclick="logout()" class="block w-full text-left px-4 py-2 hover:bg-gray-800 text-red-500">
+              <i class="fas fa-sign-out-alt mr-2"></i> Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mx-auto px-6 py-8">
+      <!-- Stats Overview -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="bg-gray-900 p-6 rounded-lg">
+          <h3 class="text-gray-400 text-sm">Current Level</h3>
+          <p class="text-2xl font-bold">Level 5</p>
+          <div class="mt-2 bg-gray-800 h-2 rounded-full">
+            <div class="bg-blue-500 h-2 rounded-full" style="width: 60%"></div>
+          </div>
+        </div>
+        <div class="bg-gray-900 p-6 rounded-lg">
+          <h3 class="text-gray-400 text-sm">XP Points</h3>
+          <p class="text-2xl font-bold">2,450 XP</p>
+          <p class="text-sm text-gray-400">+150 today</p>
+        </div>
+        <div class="bg-gray-900 p-6 rounded-lg">
+          <h3 class="text-gray-400 text-sm">Study Streak</h3>
+          <p class="text-2xl font-bold">7 days 🔥</p>
+          <p class="text-sm text-gray-400">Keep it up!</p>
+        </div>
+        <div class="bg-gray-900 p-6 rounded-lg">
+          <h3 class="text-gray-400 text-sm">Achievements</h3>
+          <p class="text-2xl font-bold">12/50</p>
+          <p class="text-sm text-gray-400">3 new this week</p>
+        </div>
+      </div>
+
+      <!-- Settings Section -->
+      <div id="settings" class="mb-8 hidden">
+        <h2 class="text-2xl font-bold mb-6">Settings</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Profile Settings -->
+          <div class="bg-gray-900 p-6 rounded-lg">
+            <h3 class="text-xl font-semibold mb-4">Profile Settings</h3>
+            <form class="space-y-4">
+              <div>
+                <label class="block text-gray-400 mb-2">Profile Picture</label>
+                <div class="flex items-center gap-4">
+                  <img src="https://ui-avatars.com/api/?name=Student&background=3B82F6&color=fff" class="w-16 h-16 rounded-full">
+                  <button type="button" class="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600">Change Photo</button>
+                </div>
+              </div>
+              <div>
+                <label class="block text-gray-400 mb-2">Name</label>
+                <input type="text" value="Student Name" class="w-full bg-gray-800 rounded px-4 py-2">
+              </div>
+              <div>
+                <label class="block text-gray-400 mb-2">Email</label>
+                <input type="email" value="student@example.com" class="w-full bg-gray-800 rounded px-4 py-2">
+              </div>
+              <button type="submit" class="px-6 py-2 bg-blue-500 rounded hover:bg-blue-600">Save Changes</button>
+            </form>
+          </div>
+
+          <!-- Preferences -->
+          <div class="bg-gray-900 p-6 rounded-lg">
+            <h3 class="text-xl font-semibold mb-4">Preferences</h3>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="text-gray-400">Email Notifications</span>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-gray-400">Study Reminders</span>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-gray-400">Test Alerts</span>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div>
+                <label class="block text-gray-400 mb-2">Daily Study Goal (hours)</label>
+                <input type="number" value="4" min="1" max="12" class="w-full bg-gray-800 rounded px-4 py-2">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEET Year Selection -->
+      <div class="bg-gray-900 p-6 rounded-lg mt-4">
+        <h3 class="text-xl font-semibold mb-4">NEET Exam Settings</h3>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-gray-400 mb-2">Select NEET Year</label>
+            <select id="neetYear" class="w-full bg-gray-800 rounded px-4 py-2" onchange="updateNEETYear()">
+              <option value="2024">NEET 2024</option>
+              <option value="2025">NEET 2025</option>
+              <option value="2026">NEET 2026</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subject Progress -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-gray-900 p-6 rounded-lg">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-semibold">Physics</h3>
+            <div class="flex items-center gap-2">
+              <span class="text-blue-500">75%</span>
+              <a href="subjects/physics.html" class="text-sm text-blue-500 hover:text-blue-400">More</a>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>Mechanics</span>
+                <span class="text-gray-400">90%</span>
+              </div>
+              <div class="bg-gray-800 h-2 rounded-full">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 90%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>Thermodynamics</span>
+                <span class="text-gray-400">65%</span>
+              </div>
+              <div class="bg-gray-800 h-2 rounded-full">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 65%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>Electromagnetism</span>
+                <span class="text-gray-400">70%</span>
+              </div>
+              <div class="bg-gray-800 h-2 rounded-full">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 70%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-900 p-6 rounded-lg">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-semibold">Chemistry</h3>
+            <div class="flex items-center gap-2">
+              <span class="text-blue-500">60%</span>
+              <a href="subjects/chemistry.html" class="text-sm text-blue-500 hover:text-blue-400">More</a>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>Physical Chemistry</span>
+                <span class="text-gray-400">75%</span>
+              </div>
+              <div class="bg-gray-800 h-2 rounded-full">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 75%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>Organic Chemistry</span>
+                <span class="text-gray-400">55%</span>
+              </div>
+              <div class="bg-gray-800 h-2 rounded-full">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 55%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>Inorganic Chemistry</span>
+                <span class="text-gray-400">50%</span>
+              </div>
+              <div class="bg-gray-800 h-2 rounded-full">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 50%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-900 p-6 rounded-lg">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-semibold">Biology</h3>
+            <div class="flex items-center gap-2">
+              <span class="text-blue-500">80%</span>
+              <a href="subjects/biology.html" class="text-sm text-blue-500 hover:text-blue-400">More</a>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>Cell Biology</span>
+                <span class="text-gray-400">85%</span>
+              </div>
+              <div class="bg-gray-800 h-2 rounded-full">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>Human Physiology</span>
+                <span class="text-gray-400">80%</span>
+              </div>
+              <div class="bg-gray-800 h-2 rounded-full">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 80%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>Genetics</span>
+                <span class="text-gray-400">75%</span>
+              </div>
+              <div class="bg-gray-800 h-2 rounded-full">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schedule -->
+      <div id="schedule" class="mb-8">
+        <h2 class="text-2xl font-bold mb-6">Study Schedule</h2>
+        <div class="bg-gray-900 p-6 rounded-lg">
+          <div class="grid grid-cols-7 gap-4">
+            <!-- Week days -->
+            <div class="text-center font-semibold">Sun</div>
+            <div class="text-center font-semibold">Mon</div>
+            <div class="text-center font-semibold">Tue</div>
+            <div class="text-center font-semibold">Wed</div>
+            <div class="text-center font-semibold">Thu</div>
+            <div class="text-center font-semibold">Fri</div>
+            <div class="text-center font-semibold">Sat</div>
+            
+            <!-- Calendar cells -->
+            <!-- Add calendar cells dynamically via JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity & Upcoming Tests -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-gray-900 p-6 rounded-lg">
+          <h3 class="text-lg font-semibold mb-4">Recent Activity</h3>
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="bg-blue-500 p-2 rounded">📚</div>
+              <div>
+                <p class="font-medium">Completed Mechanics Quiz</p>
+                <p class="text-sm text-gray-400">Score: 90% • 2 hours ago</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="bg-blue-500 p-2 rounded">🏆</div>
+              <div>
+                <p class="font-medium">New Achievement: Biology Master</p>
+                <p class="text-sm text-gray-400">4 hours ago</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="bg-blue-500 p-2 rounded">📝</div>
+              <div>
+                <p class="font-medium">Mock Test Completed</p>
+                <p class="text-sm text-gray-400">Score: 85% • Yesterday</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-900 p-6 rounded-lg">
+          <h3 class="text-lg font-semibold mb-4">Upcoming Tests</h3>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="font-medium">Physics Weekly Test</p>
+                <p class="text-sm text-gray-400">Tomorrow • 10:00 AM</p>
+              </div>
+              <button class="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600">Prepare</button>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="font-medium">Chemistry Mock Test</p>
+                <p class="text-sm text-gray-400">In 3 days • 2:00 PM</p>
+              </div>
+              <button class="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600">Prepare</button>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="font-medium">Full Length Mock Test</p>
+                <p class="text-sm text-gray-400">Next Week • 9:00 AM</p>
+              </div>
+              <button class="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600">Prepare</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* Toggle Switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #374151;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #3B82F6;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+  </style>
+
+  <script>
+    // Sidebar Toggle
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('main-content');
+      
+      if (sidebar.style.transform === 'translateX(-100%)') {
+        sidebar.style.transform = 'translateX(0)';
+        mainContent.style.marginLeft = '16rem';
+      } else {
+        sidebar.style.transform = 'translateX(-100%)';
+        mainContent.style.marginLeft = '0';
+      }
+    }
+
+    // Initialize sidebar state
+    document.getElementById('sidebar').style.transform = 'translateX(-100%)';
+
+    // User Menu Toggle
+    const userMenuBtn = document.getElementById('userMenuBtn');
+    const userMenu = document.getElementById('userMenu');
+    userMenuBtn.addEventListener('click', () => {
+      userMenu.classList.toggle('hidden');
+    });
+
+    // Close user menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!userMenuBtn.contains(e.target) && !userMenu.contains(e.target)) {
+        userMenu.classList.add('hidden');
+      }
+    });
+
+    // Show settings when settings link is clicked
+    document.querySelector('a[href="#settings"]').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('settings').classList.toggle('hidden');
+      // Hide other sections if needed
+      document.getElementById('schedule').classList.add('hidden');
+    });
+
+    // NEET Countdown Timer with dynamic year
+    let selectedNEETYear = '2024';
+
+    function updateNEETYear() {
+      selectedNEETYear = document.getElementById('neetYear').value;
+    }
+
+    function updateNEETCountdown() {
+      const neetDate = new Date(`May 5, ${selectedNEETYear} 00:00:00`).getTime();
+      const now = new Date().getTime();
+      const distance = neetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('neet-countdown').innerHTML = 
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateNEETCountdown();
+    setInterval(updateNEETCountdown, 1000);
+
+    function logout() {
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html> 

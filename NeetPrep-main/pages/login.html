@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEET Quest - Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-black text-white font-sans">
+  <div class="min-h-screen flex items-center justify-center px-4">
+    <div class="container max-w-md">
+      <div class="text-center mb-8">
+        <a href="../index.html" class="text-2xl font-bold tracking-wider hover:scale-105 transition-transform duration-300 inline-block">
+          NEET<span class="text-blue-500">Quest</span>
+        </a>
+        <p class="text-gray-400 mt-2">Welcome back, warrior!</p>
+      </div>
+
+      <form id="loginForm" class="space-y-6">
+        <div class="input-box">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="input-box">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••" required>
+        </div>
+
+        <div class="flex items-center justify-between text-sm">
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2 accent-blue-500">
+            Remember me
+          </label>
+          <a href="forgot-password.html" class="text-blue-500 hover:text-blue-400">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+
+        <div class="text-center text-sm text-gray-400 mt-4">
+          Don't have an account? 
+          <a href="signup.html" class="text-blue-500 hover:text-blue-400">Create one now</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      // Here you would typically make an API call to verify credentials
+      // For now, we'll just redirect to the dashboard
+      window.location.href = 'student-dashboard.html';
+    });
+  </script>
+</body>
+</html> 
